@@ -129,11 +129,13 @@ function move() {
     if (ball.y >= paddle1Y && ball.y <= paddle1Y + paddle1Height) {
       ball.dx = -ball.dx + 0.5;
       playerscore++;
+      ball_touch_paddle.play()
     }
     else {
       pcscore++;
       reset();
       navigator.vibrate(100);
+      missed_wav.play()
     }
   }
   if (pcscore == 4) {
@@ -194,4 +196,9 @@ function reloadGame(){
   loop()
   pcscore=0
   playerscore=0
+}
+
+function preload(){
+  missed_wav = loadSound("missed.wav")
+  ball_touch_paddle = loadsound("ball_touch_paddel.wav")
 }
